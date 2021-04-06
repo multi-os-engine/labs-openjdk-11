@@ -235,9 +235,8 @@ char *setupMacOSXLocale(int cat) {
         return ret;
     }
 }
-
-int isInAquaSession() {
 #ifndef TARGET_OS_IPHONE
+int isInAquaSession() {
     // environment variable to bypass the aqua session check
     char *ev = getenv("AWT_FORCE_HEADFUL");
     if (ev && (strncasecmp(ev, "true", 4) == 0)) {
@@ -253,9 +252,9 @@ int isInAquaSession() {
             return 1;
         }
     }
-#endif
     return 0;
 }
+#endif
 
 // 10.9 SDK does not include the NSOperatingSystemVersion struct.
 // For now, create our own
