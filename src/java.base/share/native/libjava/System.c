@@ -216,9 +216,17 @@ Java_java_lang_System_initProperties(JNIEnv *env, jclass cla, jobject props)
 #endif
 
     /* os properties */
-    PUTPROP(props, "os.name", sprops->os_name);
-    PUTPROP(props, "os.version", sprops->os_version);
-    PUTPROP(props, "os.arch", sprops->os_arch);
+    if (sprops->os_name) {
+        PUTPROP(props, "os.name", sprops->os_name);
+    }
+
+    if (sprops->os_version) {
+        PUTPROP(props, "os.version", sprops->os_version);
+    }
+
+    if (sprops->os_arch) {
+        PUTPROP(props, "os.arch", sprops->os_arch);
+    }
 
 #ifdef JDK_ARCH_ABI_PROP_NAME
     PUTPROP(props, "sun.arch.abi", sprops->sun_arch_abi);
