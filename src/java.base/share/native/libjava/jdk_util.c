@@ -34,11 +34,11 @@
 JNIEXPORT void
 JDK_GetVersionInfo0(jdk_version_info* info, size_t info_size) {
     /* These VERSION_* macros are given by the build system */
-   const unsigned int version_major = VERSION_FEATURE;
-   const unsigned int version_minor = VERSION_INTERIM;
-   const unsigned int version_security = VERSION_UPDATE;
-   const unsigned int version_patch = VERSION_PATCH;
-   const unsigned int version_build = VERSION_BUILD;
+    const unsigned int version_major = VERSION_FEATURE;
+    const unsigned int version_minor = VERSION_INTERIM;
+    const unsigned int version_security = VERSION_UPDATE;
+    const unsigned int version_patch = VERSION_PATCH;
+    const unsigned int version_build = VERSION_BUILD;
 
     memset(info, 0, info_size);
     info->jdk_version = ((version_major & 0xFF) << 24) |
