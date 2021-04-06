@@ -196,7 +196,7 @@ Java_java_lang_System_initProperties(JNIEnv *env, jclass cla, jobject props)
     CHECK_NULL_RETURN(getPropID, NULL);
 
     PUTPROP(props, "java.specification.version",
-            1);
+            VERSION_SPECIFICATION);
     PUTPROP(props, "java.specification.name",
             "Java Platform API Specification");
     PUTPROP(props, "java.specification.vendor",

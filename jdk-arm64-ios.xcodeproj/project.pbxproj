@@ -143,7 +143,7 @@
 		5A11521B2615EDE000E59D56 /* Module.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C12615ED8300E59D56 /* Module.c */; };
 		5A11521C2615EDE000E59D56 /* StackTraceElement.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C22615ED8300E59D56 /* StackTraceElement.c */; };
 		5A11521D2615EDE000E59D56 /* Reference.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C32615ED8300E59D56 /* Reference.c */; };
-		5A11521E2615EDE000E59D56 /* System.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C42615ED8300E59D56 /* System.c */; };
+		5A11521E2615EDE000E59D56 /* System.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C42615ED8300E59D56 /* System.c */; settings = {COMPILER_FLAGS = "-DVERSION_SPECIFICATION='\"11\"'"; }; };
 		5A11521F2615EDE000E59D56 /* ObjectStreamClass.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C52615ED8300E59D56 /* ObjectStreamClass.c */; };
 		5A1152202615EDE000E59D56 /* Executable.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C72615ED8300E59D56 /* Executable.c */; };
 		5A1152212615EDE000E59D56 /* String.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6C82615ED8300E59D56 /* String.c */; };
@@ -166,7 +166,7 @@
 		5A1152322615EDE100E59D56 /* SecurityManager.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6DB2615ED8300E59D56 /* SecurityManager.c */; };
 		5A1152332615EDE100E59D56 /* VMSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6DC2615ED8300E59D56 /* VMSupport.c */; };
 		5A1152352615EDE100E59D56 /* RandomAccessFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6DE2615ED8300E59D56 /* RandomAccessFile.c */; };
-		5A1152362615EDE100E59D56 /* jdk_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6DF2615ED8300E59D56 /* jdk_util.c */; };
+		5A1152362615EDE100E59D56 /* jdk_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6DF2615ED8300E59D56 /* jdk_util.c */; settings = {COMPILER_FLAGS = "-DVERSION_FEATURE=11 -DVERSION_INTERIM=0 -DVERSION_UPDATE=11 -DVERSION_PATCH=0 -DVERSION_BUILD=7 "; }; };
 		5A1152372615EDE100E59D56 /* Inflater.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6E12615ED8300E59D56 /* Inflater.c */; };
 		5A1152382615EDE100E59D56 /* Deflater.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6E22615ED8300E59D56 /* Deflater.c */; };
 		5A1152392615EDE100E59D56 /* zip_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A11F6E32615ED8300E59D56 /* zip_util.c */; settings = {COMPILER_FLAGS = "-DLIBRARY_NAME=zip"; }; };
