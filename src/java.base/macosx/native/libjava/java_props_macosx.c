@@ -61,7 +61,7 @@ char *getPosixLocale(int cat) {
 #ifndef kCFCoreFoundationVersionNumber10_11_Max
 #define kCFCoreFoundationVersionNumber10_11_Max 1299
 #endif
-char *getMacOSXLocale(int cat) {
+char *getAppleLocale(int cat) {
     const char* retVal = NULL;
     char languageString[LOCALEIDLENGTH];
     char localeString[LOCALEIDLENGTH];
@@ -227,7 +227,7 @@ const char * convertToPOSIXLocale(const char* src) {
 }
 
 char *setupMacOSXLocale(int cat) {
-    char * ret = getMacOSXLocale(cat);
+    char * ret = getAppleLocale(cat);
 
     if (ret == NULL) {
         return getPosixLocale(cat);
