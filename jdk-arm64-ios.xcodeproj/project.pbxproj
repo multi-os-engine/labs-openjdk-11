@@ -587,7 +587,7 @@
 		5A11F7052615ED8300E59D56 /* Adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Adler32.c; sourceTree = "<group>"; };
 		5A11F7082615ED8300E59D56 /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
 		5A11F7092615ED8300E59D56 /* nio_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio_util.c; sourceTree = "<group>"; };
-		5ADB99B625B7219B00B42097 /* libios-jdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libios-jdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libjdk-arm64-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1358,7 +1358,7 @@
 		5ADB99B725B7219B00B42097 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5ADB99B625B7219B00B42097 /* libios-jdk.a */,
+				5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1366,9 +1366,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5ADB99B525B7219B00B42097 /* ios-jdk */ = {
+		5ADB99B525B7219B00B42097 /* jdk-arm64-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5ADB99BD25B7219B00B42097 /* Build configuration list for PBXNativeTarget "ios-jdk" */;
+			buildConfigurationList = 5ADB99BD25B7219B00B42097 /* Build configuration list for PBXNativeTarget "jdk-arm64-ios" */;
 			buildPhases = (
 				5ADB99B225B7219B00B42097 /* Sources */,
 				5ADB99B325B7219B00B42097 /* Frameworks */,
@@ -1378,9 +1378,9 @@
 			);
 			dependencies = (
 			);
-			name = "ios-jdk";
+			name = "jdk-arm64-ios";
 			productName = "scene-graph-graal";
-			productReference = 5ADB99B625B7219B00B42097 /* libios-jdk.a */;
+			productReference = 5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -1396,7 +1396,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5ADB99AD25B7214500B42097 /* Build configuration list for PBXProject "ios-jdk" */;
+			buildConfigurationList = 5ADB99AD25B7214500B42097 /* Build configuration list for PBXProject "jdk-arm64-ios" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1409,7 +1409,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5ADB99B525B7219B00B42097 /* ios-jdk */,
+				5ADB99B525B7219B00B42097 /* jdk-arm64-ios */,
 			);
 		};
 /* End PBXProject section */
@@ -1827,7 +1827,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5ADB99AD25B7214500B42097 /* Build configuration list for PBXProject "ios-jdk" */ = {
+		5ADB99AD25B7214500B42097 /* Build configuration list for PBXProject "jdk-arm64-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5ADB99AE25B7214500B42097 /* Debug */,
@@ -1836,7 +1836,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		5ADB99BD25B7219B00B42097 /* Build configuration list for PBXNativeTarget "ios-jdk" */ = {
+		5ADB99BD25B7219B00B42097 /* Build configuration list for PBXNativeTarget "jdk-arm64-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5ADB99BE25B7219B00B42097 /* Debug */,
