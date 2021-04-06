@@ -41,10 +41,6 @@
 #endif
 #include <sys/time.h>
 
-#ifdef __APPLE__
-    #include <TargetConditionals.h>
-#endif
-
 /* For POSIX-compliant getpwuid_r, getgrgid_r on Solaris */
 #if defined(__solaris__)
 #define _POSIX_PTHREAD_SEMANTICS
@@ -533,7 +529,7 @@ static void prepAttributes(JNIEnv* env, struct stat64* buf, jobject attrs) {
     (*env)->SetLongField(env, attrs, attrs_st_birthtime_sec, (jlong)buf->st_birthtime);
 #endif
 
-#if !defined(MACOSX) && !defined(TARGET_OS_IPHONE)
+#ifndef MACOSX
     (*env)->SetLongField(env, attrs, attrs_st_atime_nsec, (jlong)buf->st_atim.tv_nsec);
     (*env)->SetLongField(env, attrs, attrs_st_mtime_nsec, (jlong)buf->st_mtim.tv_nsec);
     (*env)->SetLongField(env, attrs, attrs_st_ctime_nsec, (jlong)buf->st_ctim.tv_nsec);
