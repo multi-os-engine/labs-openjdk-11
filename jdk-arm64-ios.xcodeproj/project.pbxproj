@@ -1714,7 +1714,7 @@
 					"$(inherited)",
 				);
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
-					"ARCHPROPNAME=arm64",
+					"ARCHPROPNAME='\"arm64\"'",
 					"$(inherited)",
 					"MP_API_COMPATIBLE=1",
 					"_ALLBSD_SOURCE=1",
@@ -1803,7 +1803,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos14.4]" = (
-					"ARCHPROPNAME=arm64",
+					"ARCHPROPNAME='\"arm64\"'",
 					"MP_API_COMPATIBLE=1",
 					"_ALLBSD_SOURCE=1",
 					"MACOSX=1",
