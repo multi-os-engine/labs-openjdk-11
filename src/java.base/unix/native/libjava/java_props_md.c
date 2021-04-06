@@ -402,7 +402,7 @@ GetJavaProperties(JNIEnv *env)
     sprops.awt_toolkit = NULL;
 
     // check if we're in a GUI login session and set java.awt.headless=true if not
-    sprops.awt_headless = "true";
+    sprops.awt_headless = NULL;
 #elif defined(MACOSX)
     // Always the same GraphicsEnvironment and Toolkit on Mac OS X
     sprops.graphics_env = "sun.awt.CGraphicsEnvironment";
