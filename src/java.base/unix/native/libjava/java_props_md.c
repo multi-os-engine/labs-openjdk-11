@@ -396,20 +396,22 @@ GetJavaProperties(JNIEnv *env)
     sprops.patch_level = "unknown";
 
     /* Java 2D/AWT properties */
-#ifndef TARGET_OS_IPHONE
-    // Always the same GraphicsEnvironment and Toolkit on Mac OS X
-    sprops.graphics_env = NULL;
-    sprops.awt_toolkit = NULL;
+#ifdef MACOSX
+    #if TARGET_OS_IPHONE
+        // Always the same GraphicsEnvironment and Toolkit on Mac OS X
+        sprops.graphics_env = NULL;
+        sprops.awt_toolkit = NULL;
 
-    // check if we're in a GUI login session and set java.awt.headless=true if not
-    sprops.awt_headless = NULL;
-#elif defined(MACOSX)
-    // Always the same GraphicsEnvironment and Toolkit on Mac OS X
-    sprops.graphics_env = "sun.awt.CGraphicsEnvironment";
-    sprops.awt_toolkit = "sun.lwawt.macosx.LWCToolkit";
+        // check if we're in a GUI login session and set java.awt.headless=true if not
+        sprops.awt_headless = NULL;
+    #else
+        // Always the same GraphicsEnvironment and Toolkit on Mac OS X
+        sprops.graphics_env = "sun.awt.CGraphicsEnvironment";
+        sprops.awt_toolkit = "sun.lwawt.macosx.LWCToolkit";
 
-    // check if we're in a GUI login session and set java.awt.headless=true if not
-    sprops.awt_headless = isInAquaSession() ? NULL : "true";
+        // check if we're in a GUI login session and set java.awt.headless=true if not
+        sprops.awt_headless = isInAquaSession() ? NULL : "true";
+    #endif
 #else
     sprops.graphics_env = "sun.awt.X11GraphicsEnvironment";
     sprops.awt_toolkit = "sun.awt.X11.XToolkit";
@@ -441,7 +443,7 @@ GetJavaProperties(JNIEnv *env)
 
     /* os properties */
     {
-#ifdef MACOSX
+#if defined(MACOSX) && !(TARGET_OS_IPHONE)
         setOSNameAndVersion(&sprops);
 #else
         struct utsname name;
@@ -572,7 +574,7 @@ GetJavaProperties(JNIEnv *env)
     sprops.path_separator = ":";
     sprops.line_separator = "\n";
 
-#ifdef MACOSX
+#if defined(MACOSX) && !(TARGET_OS_IPHONE)
     setProxyProperties(&sprops);
 #endif
 

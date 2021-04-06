@@ -27,26 +27,17 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-
 #include <CoreFoundation/CoreFoundation.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 #include <Foundation/Foundation.h>
-
-#include "java_props_macosx.h"
-
 #include <TargetConditionals.h>
 
-#if defined(TARGET_OS_IPHONE)
-    #include <objc/runtime.h>
-    #include <objc/message.h>
-    #include <objc/NSObjCRuntime.h>
-
-    #define objc_msgSend_stret objc_msgSend
-#else
+#if !(TARGET_OS_IPHONE)
     #include <Security/AuthSession.h>
     #include <objc/objc-runtime.h>
 #endif
 
+#include "java_props_macosx.h"
 
 char *getPosixLocale(int cat) {
     char *lc = setlocale(cat, NULL);
@@ -235,7 +226,8 @@ char *setupMacOSXLocale(int cat) {
         return ret;
     }
 }
-#ifndef TARGET_OS_IPHONE
+
+#if !(TARGET_OS_IPHONE)
 int isInAquaSession() {
     // environment variable to bypass the aqua session check
     char *ev = getenv("AWT_FORCE_HEADFUL");
@@ -264,6 +256,7 @@ typedef struct {
         NSInteger patchVersion;
 } OSVerStruct;
 
+#if !(TARGET_OS_IPHONE)
 void setOSNameAndVersion(java_props_t *sprops) {
     // Hardcode os_name, and fill in os_version
     sprops->os_name = strdup("Mac OS X");
@@ -322,7 +315,7 @@ void setOSNameAndVersion(java_props_t *sprops) {
     }
     sprops->os_version = osVersionCStr;
 }
-
+#endif
 
 static Boolean getProxyInfoForProtocol(CFDictionaryRef inDict, CFStringRef inEnabledKey,
                                        CFStringRef inHostKey, CFStringRef inPortKey,
@@ -450,12 +443,11 @@ void setUserHome(java_props_t *sprops) {
     [pool drain];
 }
 
+#if  !(TARGET_OS_IPHONE)
 /*
  * Method for fetching proxy info and storing it in the property list.
  */
 void setProxyProperties(java_props_t *sProps) {
-#ifndef TARGET_OS_IPHONE
-
     if (sProps == NULL) return;
 
     char buf[16];    /* Used for %d of an int - 16 is plenty */
@@ -531,5 +523,5 @@ void setProxyProperties(java_props_t *sProps) {
 #undef CHECK_PROXY
 
     CFRelease(dict);
-#endif
 }
+#endif
