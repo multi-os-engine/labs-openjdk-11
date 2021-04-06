@@ -1373,6 +1373,7 @@
 				5ADB99B225B7219B00B42097 /* Sources */,
 				5ADB99B325B7219B00B42097 /* Frameworks */,
 				5ADB99B425B7219B00B42097 /* CopyFiles */,
+				5AC21CC7261C817100AE402D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1413,6 +1414,26 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AC21CC7261C817100AE402D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $PROJECT_DIR/xcode\nmv libjdk-arm64-ios.a jdk-arm64-ios.a\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5ADB99B225B7219B00B42097 /* Sources */ = {
