@@ -443,7 +443,7 @@ GetJavaProperties(JNIEnv *env)
 
     /* os properties */
     {
-#if defined(MACOSX) && !(TARGET_OS_IPHONE)
+#ifdef MACOSX
         setOSNameAndVersion(&sprops);
 #else
         struct utsname name;
