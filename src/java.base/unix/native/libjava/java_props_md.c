@@ -43,6 +43,7 @@
 #include <errno.h>
 
 #ifdef MACOSX
+#include <TargetConditionals.h>
 #include "java_props_macosx.h"
 #endif
 
