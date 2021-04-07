@@ -1431,7 +1431,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $PROJECT_DIR/xcode\nmv libjdk-arm64-ios.a jdk-arm64-ios.a\n";
+			shellScript = "cd $PROJECT_DIR/xcode\nmv libjdk-arm64-ios.a jdk-arm64-ios.a\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

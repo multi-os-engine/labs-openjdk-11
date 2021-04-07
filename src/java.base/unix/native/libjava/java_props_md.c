@@ -399,11 +399,9 @@ GetJavaProperties(JNIEnv *env)
     /* Java 2D/AWT properties */
 #ifdef MACOSX
     #if TARGET_OS_IPHONE
-        // Always the same GraphicsEnvironment and Toolkit on Mac OS X
+        // iOS does not have AWT or any other desktop components
         sprops.graphics_env = NULL;
         sprops.awt_toolkit = NULL;
-
-        // check if we're in a GUI login session and set java.awt.headless=true if not
         sprops.awt_headless = NULL;
     #else
         // Always the same GraphicsEnvironment and Toolkit on Mac OS X
