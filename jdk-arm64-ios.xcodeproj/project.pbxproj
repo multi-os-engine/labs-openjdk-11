@@ -701,7 +701,8 @@
 				5A117CDE2616039E00E59D56 /* java.base */,
 				5A117D562616039E00E59D56 /* jdk.crypto.ec */,
 			);
-			path = include;
+			name = include;
+			path = "build/labsjdks/release/labsjdk-ce-11.0.11-jvmci-21.1-b04-dev/Contents/Home/include";
 			sourceTree = "<group>";
 		};
 		5A117CD32616039E00E59D56 /* jdk.net */ = {
@@ -1731,8 +1732,10 @@
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/src/java.base/share/native/libjava",
-					"$(PROJECT_DIR)/include",
 					"$(PROJECT_DIR)/src/hotspot/share/include",
+					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/java.base",
+					"$(PROJECT_DIR)/build/darwin-amd64/jdk/include",
+					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/jdk.crypto.ec",
 				);
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1818,9 +1821,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/src/java.base/share/native/libjava",
-					"$(PROJECT_DIR)/include",
-					"$(PROJECT_DIR)/src/hotspot/share/include",
+				    "$(PROJECT_DIR)/src/java.base/share/native/libjava",
+                    "$(PROJECT_DIR)/src/hotspot/share/include",
+					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/java.base",
+					"$(PROJECT_DIR)/build/darwin-amd64/jdk/include",
+					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/jdk.crypto.ec",
 				);
 				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
