@@ -1365,6 +1365,14 @@
 		5ADB99AE25B7214500B42097 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"STATIC_BUILD=1",
+					MP_API_COMPATIBLE,
+					_LITTLE_ENDIAN,
+					_ALLBSD_SOURCE,
+                    MACOSX,
+                    NSS_ECC_MORE_THAN_SUITE_B,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = "$(PROJECT_DIR)/xcode";
 				SDKROOT = iphoneos;
@@ -1376,6 +1384,14 @@
 		5ADB99AF25B7214500B42097 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"STATIC_BUILD=1",
+					MP_API_COMPATIBLE,
+					_LITTLE_ENDIAN,
+					_ALLBSD_SOURCE,
+                    MACOSX,
+                    NSS_ECC_MORE_THAN_SUITE_B,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = "$(PROJECT_DIR)/xcode";
 				SDKROOT = iphoneos;
@@ -1433,14 +1449,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
-					"ARCHPROPNAME='\"arm64\"'",
 					"$(inherited)",
-					MP_API_COMPATIBLE,
-					_ALLBSD_SOURCE,
-					MACOSX,
-					"STATIC_BUILD=1",
-					NSS_ECC_MORE_THAN_SUITE_B,
-					_LITTLE_ENDIAN,
+					"ARCHPROPNAME='\"arm64\"'",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1525,13 +1535,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
+					"$(inherited)",
 					"ARCHPROPNAME='\"arm64\"'",
-					MP_API_COMPATIBLE,
-					_ALLBSD_SOURCE,
-					MACOSX,
-					"STATIC_BUILD=1",
-					NSS_ECC_MORE_THAN_SUITE_B,
-					_LITTLE_ENDIAN,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
