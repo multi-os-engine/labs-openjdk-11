@@ -1717,11 +1717,12 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"ARCHPROPNAME='\"arm64\"'",
 					"$(inherited)",
-					"MP_API_COMPATIBLE=1",
-					"_ALLBSD_SOURCE=1",
-					"MACOSX=1",
+					MP_API_COMPATIBLE,
+					_ALLBSD_SOURCE,
+					MACOSX,
 					"STATIC_BUILD=1",
 					NSS_ECC_MORE_THAN_SUITE_B,
+					_LITTLE_ENDIAN,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1807,11 +1808,12 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos14.4]" = (
 					"ARCHPROPNAME='\"arm64\"'",
-					"MP_API_COMPATIBLE=1",
-					"_ALLBSD_SOURCE=1",
-					"MACOSX=1",
+					MP_API_COMPATIBLE,
+					_ALLBSD_SOURCE,
+					MACOSX,
 					"STATIC_BUILD=1",
 					NSS_ECC_MORE_THAN_SUITE_B,
+					_LITTLE_ENDIAN,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1821,8 +1823,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-				    "$(PROJECT_DIR)/src/java.base/share/native/libjava",
-                    "$(PROJECT_DIR)/src/hotspot/share/include",
+					"$(PROJECT_DIR)/src/java.base/share/native/libjava",
+					"$(PROJECT_DIR)/src/hotspot/share/include",
 					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/java.base",
 					"$(PROJECT_DIR)/build/darwin-amd64/jdk/include",
 					"$(PROJECT_DIR)/build/darwin-amd64/support/headers/jdk.crypto.ec",
