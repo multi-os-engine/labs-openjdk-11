@@ -468,7 +468,7 @@
 		5A11F7052615ED8300E59D56 /* Adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Adler32.c; sourceTree = "<group>"; };
 		5A11F7082615ED8300E59D56 /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
 		5A11F7092615ED8300E59D56 /* nio_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio_util.c; sourceTree = "<group>"; };
-		5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libjdk-arm64-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ADB99B625B7219B00B42097 /* jdk-11-arm64-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "jdk-11-arm64-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1080,7 +1080,7 @@
 		5ADB99B725B7219B00B42097 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */,
+				5ADB99B625B7219B00B42097 /* jdk-11-arm64-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1095,7 +1095,6 @@
 				5ADB99B225B7219B00B42097 /* Sources */,
 				5ADB99B325B7219B00B42097 /* Frameworks */,
 				5ADB99B425B7219B00B42097 /* CopyFiles */,
-				5AC21CC7261C817100AE402D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1103,7 +1102,7 @@
 			);
 			name = "jdk-arm64-ios";
 			productName = "scene-graph-graal";
-			productReference = 5ADB99B625B7219B00B42097 /* libjdk-arm64-ios.a */;
+			productReference = 5ADB99B625B7219B00B42097 /* jdk-11-arm64-ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -1136,26 +1135,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5AC21CC7261C817100AE402D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/xcode\nmv libjdk-arm64-ios.a jdk-arm64-ios.a\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5ADB99B225B7219B00B42097 /* Sources */ = {
@@ -1370,8 +1349,8 @@
 					MP_API_COMPATIBLE,
 					_LITTLE_ENDIAN,
 					_ALLBSD_SOURCE,
-                    MACOSX,
-                    NSS_ECC_MORE_THAN_SUITE_B,
+					MACOSX,
+					NSS_ECC_MORE_THAN_SUITE_B,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = "$(PROJECT_DIR)/xcode";
@@ -1389,8 +1368,8 @@
 					MP_API_COMPATIBLE,
 					_LITTLE_ENDIAN,
 					_ALLBSD_SOURCE,
-                    MACOSX,
-                    NSS_ECC_MORE_THAN_SUITE_B,
+					MACOSX,
+					NSS_ECC_MORE_THAN_SUITE_B,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = "$(PROJECT_DIR)/xcode";
@@ -1443,6 +1422,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1473,7 +1453,7 @@
 				MTL_FAST_MATH = YES;
 				OBJROOT = "$(SYMROOT)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "jdk-11-arm64-ios-d";
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "${PROJECT_DIR}/xcode/SharedPrecompiledHeaders";
 				SKIP_INSTALL = NO;
@@ -1531,6 +1511,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -1559,7 +1540,7 @@
 				MTL_FAST_MATH = YES;
 				OBJROOT = "$(SYMROOT)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "jdk-11-arm64-ios-r";
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "${PROJECT_DIR}/xcode/SharedPrecompiledHeaders";
 				SKIP_INSTALL = NO;
