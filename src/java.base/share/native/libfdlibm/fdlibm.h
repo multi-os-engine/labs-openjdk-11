@@ -141,6 +141,7 @@ extern double fmod __P((double, double));
 
 extern double hypot __P((double, double));
 extern int isnan __P((double));
+#define finite _jdk_finite
 extern int finite __P((double));
 
 extern double atanh __P((double));
