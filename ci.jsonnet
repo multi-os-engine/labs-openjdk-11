@@ -3,7 +3,7 @@ local defs = import "defs.jsonnet";
 # https://github.com/graalvm/labs-openjdk-11/blob/master/doc/testing.md
 local run_test_spec = "test/hotspot/jtreg/compiler/jvmci";
 
-local labsjdk_builder_version = "66c43e01a537017021f186f9063796e2f82cd2aa";
+local labsjdk_builder_version = "1c0fbd474e84a393681729bf0794e59ea55300a5";
 
 {
     overlay: "509baaf0d06e0fd662ba236954bacf62c6676360",
@@ -251,7 +251,10 @@ local labsjdk_builder_version = "66c43e01a537017021f186f9063796e2f82cd2aa";
     local clone_graal = {
         run+: [
             ["git", "clone", "--quiet", ["mx", "urlrewrite", "https://github.com/graalvm/graal.git"]],
-            ["git", "-C", "graal", "checkout", downstream_branch, "||", "true"],
+            # Use branch recorded by previous builder or record it now for subsequent builder(s)
+            ["test", "-f", "graal.commit", "||", "echo", downstream_branch, ">graal.commit"],
+            ["git", "-C", "graal", "checkout", ["cat", "graal.commit"], "||", "true"],
+            ["git", "-C", "graal", "rev-list", "-n", "1", "HEAD", ">graal.commit"],            
         ]
     },
 
@@ -308,6 +311,11 @@ local labsjdk_builder_version = "66c43e01a537017021f186f9063796e2f82cd2aa";
         targets: ["gate"],
         publishArtifacts: [
             {
+                name: "libgraal" + conf.name + ".graal.commit",
+                dir: ".",
+                patterns: ["graal.commit"]
+            },
+            {
                 name: "libgraal" + conf.name,
                 dir: ".",
                 patterns: ["graal/*/mxbuild"]
@@ -322,6 +330,11 @@ local labsjdk_builder_version = "66c43e01a537017021f186f9063796e2f82cd2aa";
 
     local requireLibGraal(conf) = {
         requireArtifacts+: [
+            {
+                name: "libgraal" + conf.name + ".graal.commit",
+                dir: ".",
+                autoExtract: true
+            },
             {
                 name: "libgraal" + conf.name,
                 dir: ".",

@@ -56,6 +56,7 @@
   template(ForceAsyncSafepoint)                   \
   template(Deoptimize)                            \
   template(DeoptimizeFrame)                       \
+  template(DeoptimizeNMethod)                     \
   template(DeoptimizeAll)                         \
   template(ZombieAll)                             \
   template(UnlinkSymbols)                         \
@@ -346,6 +347,23 @@ class VM_DeoptimizeFrame: public VM_Operation {
   bool allow_nested_vm_operations() const        { return true;  }
 };
 
+// Deopt helper that can deoptimize an individual nmethod
+class VM_DeoptimizeNMethod: public VM_Operation {
+  friend class Deoptimization;
+
+ private:
+  nmethod* _nm;
+  nmethodLocker _locker;
+  VM_DeoptimizeNMethod(nmethod* nm);
+
+ public:
+  static void invalidate(nmethod* nm);
+
+  VMOp_Type type() const                         { return VMOp_DeoptimizeNMethod; }
+  void doit();
+  bool allow_nested_vm_operations() const        { return true;  }
+};
+
 #ifndef PRODUCT
 class VM_DeoptimizeAll: public VM_Operation {
  private:
@@ -459,7 +477,7 @@ class VM_ThreadDump : public VM_Operation {
   bool                           _with_locked_monitors;
   bool                           _with_locked_synchronizers;
 
-  ThreadSnapshot* snapshot_thread(JavaThread* java_thread, ThreadConcurrentLocks* tcl);
+  void snapshot_thread(JavaThread* java_thread, ThreadConcurrentLocks* tcl);
 
  public:
   VM_ThreadDump(ThreadDumpResult* result,

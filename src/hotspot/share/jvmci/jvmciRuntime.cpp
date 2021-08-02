@@ -899,6 +899,12 @@ static void _log(const char* buf, size_t count) {
   tty->write((char*) buf, count);
 }
 
+// Function for redirecting shared library JavaVM fatal error data to a log file.
+// The log file is opened on first call to this function.
+static void _fatal_log(const char* buf, size_t count) {
+  JVMCI::fatal_log(buf, count);
+}
+
 // Function for shared library JavaVM to flush tty
 static void _flush_log() {
   tty->flush();
@@ -933,7 +939,7 @@ JNIEnv* JVMCIRuntime::init_shared_library_javavm() {
     JavaVMInitArgs vm_args;
     vm_args.version = JNI_VERSION_1_2;
     vm_args.ignoreUnrecognized = JNI_TRUE;
-    JavaVMOption options[4];
+    JavaVMOption options[5];
     jlong javaVM_id = 0;
 
     // Protocol: JVMCI shared library JavaVM should support a non-standard "_javavm_id"
@@ -948,6 +954,8 @@ JNIEnv* JVMCIRuntime::init_shared_library_javavm() {
     options[2].extraInfo = (void*) _flush_log;
     options[3].optionString = (char*) "_fatal";
     options[3].extraInfo = (void*) _fatal;
+    options[4].optionString = (char*) "_fatal_log";
+    options[4].extraInfo = (void*) _fatal_log;
 
     vm_args.version = JNI_VERSION_1_2;
     vm_args.options = options;
@@ -1676,7 +1684,7 @@ bool JVMCIRuntime::is_gc_supported(JVMCIEnv* JVMCIENV, CollectedHeap::Name name)
 // ------------------------------------------------------------------
 JVMCI::CodeInstallResult JVMCIRuntime::register_method(JVMCIEnv* JVMCIENV,
                                 const methodHandle& method,
-                                nmethod*& nm,
+                                nmethodLocker& code_handle,
                                 int entry_bci,
                                 CodeOffsets* offsets,
                                 int orig_pc_offset,
@@ -1697,7 +1705,7 @@ JVMCI::CodeInstallResult JVMCIRuntime::register_method(JVMCIEnv* JVMCIENV,
                                 char* speculations,
                                 int speculations_len) {
   JVMCI_EXCEPTION_CONTEXT;
-  nm = NULL;
+  nmethod* nm = NULL;
   int comp_level = CompLevel_full_optimization;
   char* failure_detail = NULL;
 
@@ -1782,6 +1790,7 @@ JVMCI::CodeInstallResult JVMCIRuntime::register_method(JVMCIEnv* JVMCIENV,
           MutexUnlocker locker(MethodCompileQueue_lock);
           CompileBroker::handle_full_code_cache(CodeCache::get_code_blob_type(comp_level));
         }
+        result = JVMCI::cache_full;
       } else {
         nm->set_has_unsafe_access(has_unsafe_access);
         nm->set_has_wide_vectors(has_wide_vector);
@@ -1840,6 +1849,10 @@ JVMCI::CodeInstallResult JVMCIRuntime::register_method(JVMCIEnv* JVMCIENV,
     }
   }
 
+  if (result == JVMCI::ok) {
+    code_handle.set_code(nm);
+  }
+
   // String creation must be done outside lock
   if (failure_detail != NULL) {
     // A failure to allocate the string is silently ignored.
@@ -1847,8 +1860,8 @@ JVMCI::CodeInstallResult JVMCIRuntime::register_method(JVMCIEnv* JVMCIENV,
     JVMCIENV->set_HotSpotCompiledNmethod_installationFailureMessage(compiled_code, message);
   }
 
-  // JVMTI -- compiled method notification (must be done outside lock)
-  if (nm != NULL) {
+  if (result == JVMCI::ok) {
+    // JVMTI -- compiled method notification (must be done outside lock)
     nm->post_compiled_method_load_event();
   }
 

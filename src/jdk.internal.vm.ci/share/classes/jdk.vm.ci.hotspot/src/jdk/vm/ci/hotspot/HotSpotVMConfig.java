@@ -256,6 +256,8 @@ class HotSpotVMConfig extends HotSpotVMConfigAccess {
     final int jvmConstantMethodHandleInError = getConstant("JVM_CONSTANT_MethodHandleInError", Integer.class);
     final int jvmConstantMethodType = getConstant("JVM_CONSTANT_MethodType", Integer.class);
     final int jvmConstantMethodTypeInError = getConstant("JVM_CONSTANT_MethodTypeInError", Integer.class);
+    final int jvmConstantDynamic = getConstant("JVM_CONSTANT_Dynamic", Integer.class);
+    final int jvmConstantDynamicInError = getConstant("JVM_CONSTANT_DynamicInError", Integer.class);
     final int jvmConstantInvokeDynamic = getConstant("JVM_CONSTANT_InvokeDynamic", Integer.class);
 
     final int jvmConstantExternalMax = getConstant("JVM_CONSTANT_ExternalMax", Integer.class);
@@ -358,11 +360,12 @@ class HotSpotVMConfig extends HotSpotVMConfigAccess {
     final int vmIntrinsicLinkToSpecial = getConstant("vmIntrinsics::_linkToSpecial", Integer.class);
     final int vmIntrinsicLinkToInterface = getConstant("vmIntrinsics::_linkToInterface", Integer.class);
 
-    final int codeInstallResultOk = getConstant("JVMCIEnv::ok", Integer.class);
-    final int codeInstallResultDependenciesFailed = getConstant("JVMCIEnv::dependencies_failed", Integer.class);
-    final int codeInstallResultDependenciesInvalid = getConstant("JVMCIEnv::dependencies_invalid", Integer.class);
-    final int codeInstallResultCacheFull = getConstant("JVMCIEnv::cache_full", Integer.class);
-    final int codeInstallResultCodeTooLarge = getConstant("JVMCIEnv::code_too_large", Integer.class);
+    final int codeInstallResultOk = getConstant("JVMCI::ok", Integer.class);
+    final int codeInstallResultDependenciesFailed = getConstant("JVMCI::dependencies_failed", Integer.class);
+    final int codeInstallResultDependenciesInvalid = getConstant("JVMCI::dependencies_invalid", Integer.class);
+    final int codeInstallResultCacheFull = getConstant("JVMCI::cache_full", Integer.class);
+    final int codeInstallResultCodeTooLarge = getConstant("JVMCI::code_too_large", Integer.class);
+    final int codeInstallResultFirstPermanentBailout = getConstant("JVMCI::first_permanent_bailout", Integer.class);
 
     String getCodeInstallResultDescription(int codeInstallResult) {
         if (codeInstallResult == codeInstallResultOk) {

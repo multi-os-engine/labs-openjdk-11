@@ -260,16 +260,24 @@ static bool match_option(const JavaVMOption* option, const char** names, const c
 }
 
 #if INCLUDE_JFR
+static bool _has_jfr_option = false;  // is using JFR
+
 // return true on failure
 static bool match_jfr_option(const JavaVMOption** option) {
   assert((*option)->optionString != NULL, "invariant");
   char* tail = NULL;
   if (match_option(*option, "-XX:StartFlightRecording", (const char**)&tail)) {
+    _has_jfr_option = true;
     return Jfr::on_start_flight_recording_option(option, tail);
   } else if (match_option(*option, "-XX:FlightRecorderOptions", (const char**)&tail)) {
+    _has_jfr_option = true;
     return Jfr::on_flight_recorder_option(option, tail);
   }
   return false;
+}
+
+bool Arguments::has_jfr_option() {
+  return _has_jfr_option;
 }
 #endif
 
@@ -2987,6 +2995,10 @@ jint Arguments::parse_each_vm_init_arg(const JavaVMInitArgs* args, bool* patch_m
         return JNI_EINVAL;
       }
     } else if (match_option(option, "-XX:+EnableJVMCIProduct")) {
+      // Just continue, since "-XX:+EnableJVMCIProduct" has been specified before
+      if (EnableJVMCIProduct) {
+        continue;
+      }
       JVMFlag *jvmciFlag = JVMFlag::find_flag("EnableJVMCIProduct");
       // Allow this flag if it has been unlocked.
       if (jvmciFlag != NULL && jvmciFlag->is_unlocked()) {

@@ -172,6 +172,7 @@
   nonstatic_field(JavaThread,                  _threadObj,                                    oop)                                   \
   nonstatic_field(JavaThread,                  _anchor,                                       JavaFrameAnchor)                       \
   nonstatic_field(JavaThread,                  _vm_result,                                    oop)                                   \
+  nonstatic_field(JavaThread,                  _stack_overflow_limit,                         address)                               \
   volatile_nonstatic_field(JavaThread,         _exception_oop,                                oop)                                   \
   volatile_nonstatic_field(JavaThread,         _exception_pc,                                 address)                               \
   volatile_nonstatic_field(JavaThread,         _is_method_handle_return,                      int)                                   \
@@ -426,6 +427,7 @@
   declare_constant(JVM_CONSTANT_NameAndType)                              \
   declare_constant(JVM_CONSTANT_MethodHandle)                             \
   declare_constant(JVM_CONSTANT_MethodType)                               \
+  declare_constant(JVM_CONSTANT_Dynamic)                                  \
   declare_constant(JVM_CONSTANT_InvokeDynamic)                            \
   declare_constant(JVM_CONSTANT_ExternalMax)                              \
                                                                           \
@@ -575,11 +577,12 @@
   declare_constant(JumpData::taken_off_set)                               \
   declare_constant(JumpData::displacement_off_set)                        \
                                                                           \
-  declare_preprocessor_constant("JVMCIEnv::ok",                   JVMCI::ok)                      \
-  declare_preprocessor_constant("JVMCIEnv::dependencies_failed",  JVMCI::dependencies_failed)     \
-  declare_preprocessor_constant("JVMCIEnv::dependencies_invalid", JVMCI::dependencies_invalid)    \
-  declare_preprocessor_constant("JVMCIEnv::cache_full",           JVMCI::cache_full)              \
-  declare_preprocessor_constant("JVMCIEnv::code_too_large",       JVMCI::code_too_large)          \
+  declare_preprocessor_constant("JVMCI::ok",                      JVMCI::ok)                      \
+  declare_preprocessor_constant("JVMCI::dependencies_failed",     JVMCI::dependencies_failed)     \
+  declare_preprocessor_constant("JVMCI::dependencies_invalid",    JVMCI::dependencies_invalid)    \
+  declare_preprocessor_constant("JVMCI::cache_full",              JVMCI::cache_full)              \
+  declare_preprocessor_constant("JVMCI::code_too_large",          JVMCI::code_too_large)          \
+  declare_preprocessor_constant("JVMCI::first_permanent_bailout", JVMCI::first_permanent_bailout) \
   declare_constant(JVMCIRuntime::none)                                    \
   declare_constant(JVMCIRuntime::by_holder)                               \
   declare_constant(JVMCIRuntime::by_full_signature)                       \
