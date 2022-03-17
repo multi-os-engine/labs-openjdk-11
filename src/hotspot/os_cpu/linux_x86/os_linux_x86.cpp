@@ -98,13 +98,8 @@ address os::current_stack_pointer() {
   register void *esp;
   __asm__("mov %%" SPELL_REG_SP ", %0":"=r"(esp));
   return (address) ((char*)esp + sizeof(long)*2);
-#elif defined(__clang__)
-  intptr_t* esp;
-  __asm__ __volatile__ ("mov %%" SPELL_REG_SP ", %0":"=r"(esp):);
-  return (address) esp;
 #else
-  register void *esp __asm__ (SPELL_REG_SP);
-  return (address) esp;
+  return (address)__builtin_frame_address(0);
 #endif
 }
 
@@ -463,7 +458,7 @@ JVM_handle_linux_signal(int sig,
         int op = pc[0];
         if (op == 0xDB) {
           // FIST
-          // TODO: The encoding of D2I in i486.ad can cause an exception
+          // TODO: The encoding of D2I in x86_32.ad can cause an exception
           // prior to the fist instruction if there was an invalid operation
           // pending. We want to dismiss that exception. From the win_32
           // side it also seems that if it really was the fist causing

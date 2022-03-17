@@ -248,7 +248,8 @@ var getJibProfilesCommon = function (input, data) {
         dependencies: ["boot_jdk", "gnumake", "jtreg", "jib", "autoconf"],
         default_make_targets: ["product-bundles", "test-bundles", "static-libs-bundles"],
         configure_args: concat(["--enable-jtreg-failure-handler"],
-            "--with-exclude-translations=de,es,fr,it,ko,pt_BR,sv,ca,tr,cs,sk,ja_JP_A,ja_JP_HA,ja_JP_HI,ja_JP_I,zh_TW,zh_HK",
+            "--with-exclude-translations=es,fr,it,ko,pt_BR,sv,ca,tr,cs,sk,ja_JP_A,ja_JP_HA,ja_JP_HI,ja_JP_I,zh_TW,zh_HK",
+            "--with-jvm-features=-aot,-graal",
             "--disable-manpages",
             versionArgs(input, common))
     };
@@ -401,7 +402,7 @@ var getJibProfilesProfiles = function (input, common, data) {
         "linux-x64": {
             target_os: "linux",
             target_cpu: "x64",
-            dependencies: ["devkit", "graphviz", "pandoc", "graalunit_lib"],
+            dependencies: ["devkit", "graphviz", "pandoc"],
             configure_args: concat(common.configure_args_64bit,
                 "--enable-full-docs", "--with-zlib=system"),
             default_make_targets: ["docs-bundles"],
@@ -427,7 +428,7 @@ var getJibProfilesProfiles = function (input, common, data) {
         "macosx-x64": {
             target_os: "macosx",
             target_cpu: "x64",
-            dependencies: ["devkit", "graalunit_lib"],
+            dependencies: ["devkit"],
             configure_args: concat(common.configure_args_64bit, "--with-zlib=system",
                 "--with-macosx-version-max=10.9.0",
                 // Use system SetFile instead of the one in the devkit as the
@@ -454,7 +455,7 @@ var getJibProfilesProfiles = function (input, common, data) {
         "windows-x64": {
             target_os: "windows",
             target_cpu: "x64",
-            dependencies: ["devkit", "graalunit_lib"],
+            dependencies: ["devkit"],
             configure_args: concat(common.configure_args_64bit),
         },
 
@@ -875,7 +876,7 @@ var getJibProfilesDependencies = function (input, common) {
 
     var devkit_platform_revisions = {
         linux_x64: "gcc7.3.0-OEL6.4+1.1",
-        macosx_x64: "Xcode10.1-MacOSX10.14+1.0",
+        macosx_x64: "Xcode11.3.1-MacOSX10.15+1.0",
         solaris_x64: "SS12u4-Solaris11u1+1.0",
         solaris_sparcv9: "SS12u4-Solaris11u1+2.0",
         windows_x64: "VS2017-15.9.24+1.0",
@@ -1026,15 +1027,6 @@ var getJibProfilesDependencies = function (input, common) {
             ext: "zip",
             revision: "1.7.1+1.0",
             configure_args: "",
-        },
-
-        graalunit_lib: {
-            organization: common.organization,
-            ext: "zip",
-            revision: "619_Apr_12_2018",
-            module: "graalunit-lib",
-            configure_args: "--with-graalunit-lib=" + input.get("graalunit_lib", "install_path"),
-            environment_name: "GRAALUNIT_LIB"
         },
     };
 
